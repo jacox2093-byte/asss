@@ -1,0 +1,591 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>forfit · Presupuesto, costos, documentos y registro explicados</title>
+<meta name="description" content="Portal informativo sobre presupuesto del hogar por categorías, costos de un negocio pequeño, lectura de documentos económicos y registro ordenado. Contenido general con ejemplos hipotéticos en base 100.">
+<link rel="canonical" href="https://forfit.blog/">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="forfit">
+<meta property="og:title" content="forfit · Presupuesto, costos, documentos y registro explicados">
+<meta property="og:description" content="Cuatro áreas educativas para leer el gasto por proporciones, entender costos sin fórmulas, interpretar documentos y llevar un registro útil.">
+<meta property="og:url" content="https://forfit.blog/">
+<meta property="og:locale" content="es_BO">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Chakra+Petch:wght@500;600&amp;family=Source+Sans+3:ital,wght@0,400;0,600;1,400&amp;display=swap">
+<style>
+:root{
+--noche:#0E1526;
+--placa:#F5F7FA;
+--tinta:#121722;
+--tinta-media:#5A6474;
+--texto-noche:#DCE3EE;
+--reticula:rgba(220,227,238,0.10);
+--cian:#5FD0D6;
+--ambar:#E3A23C;
+--titulos:"Chakra Petch",system-ui,sans-serif;
+--texto:"Source Sans 3",system-ui,sans-serif;
+--celda:80px;
+--radio:4px;
+--lectura:64ch;
+--ancho:1120px;
+--rapido:150ms;
+--despliegue:200ms;
+}
+*,*::before,*::after{box-sizing:border-box}
+html{scroll-padding-top:96px;-webkit-text-size-adjust:100%}
+body{margin:0;background-color:var(--noche);background-image:linear-gradient(var(--reticula) 1px,transparent 1px),linear-gradient(90deg,var(--reticula) 1px,transparent 1px);background-size:var(--celda) var(--celda);color:var(--texto-noche);font-family:var(--texto);font-size:1.0625rem;line-height:1.65}
+h1,h2,h3,h4{font-family:var(--titulos);font-weight:600;line-height:1.25;margin:0 0 .6em}
+h2{font-size:clamp(1.6rem,3vw,2.2rem)}
+h3{font-size:1.3rem}
+h4{font-size:1.05rem;margin-top:1.6em}
+p,ul,ol,dl{margin:0 0 1em}
+a{color:inherit;text-underline-offset:3px;transition:color var(--rapido),background-color var(--rapido),border-color var(--rapido)}
+a:hover{color:var(--cian)}
+:focus-visible{outline:3px solid var(--cian);outline-offset:3px}
+.placa a:hover{color:var(--tinta-media)}
+.placa :focus-visible,.cookies :focus-visible{outline-color:var(--tinta)}
+.salto{position:absolute;left:16px;top:-120px;z-index:50;background:var(--placa);color:var(--tinta);padding:10px 16px;border-radius:var(--radio);font-weight:600}
+.salto:focus{top:12px}
+.cabecera{position:sticky;top:0;z-index:20;background:var(--noche);border-bottom:1px solid var(--reticula)}
+.cabecera-interior{max-width:var(--ancho);margin:0 auto;padding:0 24px;min-height:64px;display:flex;align-items:center;justify-content:space-between;gap:24px;flex-wrap:wrap}
+.marca{font-family:var(--titulos);font-size:1.35rem;font-weight:600;text-decoration:none;color:var(--texto-noche);letter-spacing:.02em}
+.menu ul{list-style:none;display:flex;flex-wrap:wrap;gap:4px 24px;margin:0;padding:0}
+.menu a{display:inline-block;padding:10px 0;text-decoration:none;color:var(--texto-noche);border-bottom:2px solid transparent}
+.menu a:hover,.menu a:active{color:var(--cian);border-bottom-color:var(--cian)}
+.menu-boton{display:none;font:inherit;font-family:var(--titulos);background:var(--noche);color:var(--texto-noche);border:1px solid var(--texto-noche);border-radius:var(--radio);padding:6px 14px;cursor:pointer;transition:color var(--rapido),border-color var(--rapido)}
+.menu-boton:hover{color:var(--cian);border-color:var(--cian)}
+.portada{max-width:var(--ancho);margin:0 auto;padding:96px 24px 64px}
+.portada h1{font-size:clamp(3rem,9vw,6rem);letter-spacing:.01em;margin-bottom:.25em}
+.portada-lema{font-size:clamp(1.15rem,2.2vw,1.45rem);max-width:40ch}
+.portada-aviso{max-width:52ch;border-left:2px solid var(--cian);padding-left:16px}
+.motivo{margin:56px 0 0}
+.motivo svg,.motivo-reducido svg{display:block;width:100%;height:auto}
+.motivo svg{background:var(--noche);border:1px solid var(--reticula)}
+.motivo figcaption{margin-top:16px}
+.leyenda{list-style:none;padding:0;margin:12px 0 0;display:flex;flex-wrap:wrap;gap:8px 32px}
+.leyenda span{font-family:var(--titulos);color:var(--cian)}
+.bloque{padding:72px 24px}
+.seccion-cabecera{max-width:calc(var(--lectura) + 96px);margin:0 auto 32px}
+.seccion-cabecera h2::before{content:"";display:block;width:56px;height:2px;background:var(--cian);margin-bottom:18px}
+.seccion-cabecera p{margin:0;max-width:52ch}
+.placa{background:var(--placa);color:var(--tinta);border-radius:var(--radio);max-width:calc(var(--lectura) + 96px);margin:0 auto;padding:48px}
+.aviso-area{color:var(--tinta-media);border-bottom:1px solid var(--tinta-media);padding-bottom:24px;margin-bottom:40px}
+.entrada + .entrada{border-top:1px solid var(--tinta-media);margin-top:48px;padding-top:48px}
+.resumen{font-weight:600;font-size:1.12rem}
+.fechas{color:var(--tinta-media);font-size:.95rem}
+.motivo-reducido{max-width:420px;margin:32px auto}
+figcaption{color:var(--tinta-media);font-size:.95rem}
+.motivo figcaption{color:var(--texto-noche)}
+.tabla-marco{overflow-x:auto;margin:0 0 1.4em}
+.tabla-datos{width:100%;border-collapse:collapse;font-size:1rem}
+.tabla-datos caption{text-align:left;color:var(--tinta-media);font-size:.95rem;padding-bottom:10px}
+.tabla-datos th,.tabla-datos td{padding:10px 12px;border-bottom:1px solid var(--tinta-media);text-align:left}
+.tabla-datos .num{text-align:right;font-family:var(--titulos);font-variant-numeric:tabular-nums;white-space:nowrap}
+.indice-grupo{max-width:calc(var(--lectura) + 96px);margin:0 auto 40px}
+.indice-grupo ul{list-style:none;margin:0;padding:0}
+.indice-grupo li{display:flex;gap:20px;padding:10px 0;border-top:1px solid var(--reticula)}
+.coord{font-family:var(--titulos);color:var(--cian);white-space:nowrap;min-width:9.5em;font-variant-numeric:tabular-nums}
+.ficha{display:grid;grid-template-columns:minmax(9em,auto) 1fr;gap:8px 20px}
+.ficha dt{font-weight:600}
+.ficha dd{margin:0;overflow-wrap:anywhere}
+.atencion{border-left:4px solid var(--ambar);padding:4px 0 4px 16px}
+.formulario{margin-top:32px}
+.campo{margin-bottom:20px}
+.campo label{display:block;font-weight:600;margin-bottom:6px}
+.campo input,.campo textarea{width:100%;font:inherit;color:var(--tinta);background:var(--placa);border:1px solid var(--tinta-media);border-radius:var(--radio);padding:10px 12px;transition:border-color var(--rapido)}
+.campo input:hover,.campo textarea:hover{border-color:var(--tinta)}
+.campo input[aria-invalid="true"],.campo textarea[aria-invalid="true"]{border:2px solid var(--tinta)}
+.error{display:block;margin-top:6px;font-weight:600;font-size:.95rem}
+.estado{margin-top:12px;font-weight:600}
+.boton{font:inherit;font-family:var(--titulos);font-weight:600;background:var(--noche);color:var(--texto-noche);border:1px solid var(--noche);border-radius:var(--radio);padding:10px 20px;cursor:pointer;transition:background-color var(--rapido),color var(--rapido)}
+.boton:hover{background:var(--placa);color:var(--tinta)}
+.boton-sec{background:var(--placa);color:var(--tinta);border-color:var(--tinta)}
+.boton-sec:hover{background:var(--noche);color:var(--texto-noche)}
+.legal{border-top:1px solid var(--tinta-media)}
+.legal:last-of-type{border-bottom:1px solid var(--tinta-media)}
+.legal summary{cursor:pointer;padding:18px 0;transition:color var(--rapido)}
+.legal summary:hover{color:var(--tinta-media)}
+.legal summary h3{display:inline;margin:0}
+.legal[open] .doc-cuerpo{animation:desplegar var(--despliegue) ease-out}
+.doc-cuerpo{padding-bottom:24px}
+@keyframes desplegar{from{opacity:0;transform:translateY(-4px)}to{opacity:1;transform:none}}
+.pie{border-top:1px solid var(--reticula);padding:56px 24px 40px}
+.pie-interior{max-width:var(--ancho);margin:0 auto;display:grid;grid-template-columns:2fr 1fr;gap:40px}
+.pie .ficha{font-size:.97rem}
+.pie-legal ul{list-style:none;padding:0;margin:0}
+.pie-legal li{padding:6px 0}
+.pie-nota{max-width:var(--ancho);margin:32px auto 0;font-size:.95rem}
+.cookies{position:fixed;left:16px;right:16px;bottom:16px;z-index:40;max-width:640px;margin:0 auto;background:var(--placa);color:var(--tinta);border:1px solid var(--tinta-media);border-radius:var(--radio);padding:20px 24px;transition:opacity var(--despliegue),transform var(--despliegue)}
+.cookies.oculto{opacity:0;transform:translateY(12px)}
+.cookies p{margin-bottom:14px}
+.cookies-acciones{display:flex;flex-wrap:wrap;gap:12px}
+.svg-reticula{stroke:var(--reticula);stroke-width:1;fill:none}
+.svg-linea{stroke:var(--texto-noche);stroke-width:1;fill:none}
+.svg-punto{fill:var(--texto-noche)}
+.svg-centro{fill:var(--cian)}
+.svg-rotulo{fill:var(--texto-noche);font-family:var(--titulos);font-size:22px;font-weight:600}
+.svg-ambar{stroke:var(--ambar);stroke-width:2;stroke-dasharray:6 6;fill:none}
+.svg-rotulo-ambar{fill:var(--texto-noche);font-family:var(--texto);font-size:17px}
+.svg-r-reticula{stroke:var(--tinta-media);stroke-width:.5;fill:none}
+.svg-r-linea{stroke:var(--tinta-media);stroke-width:1.2;fill:none}
+.svg-r-punto{fill:var(--tinta)}
+.svg-r-centro{fill:var(--tinta);stroke:var(--tinta);stroke-width:1}
+.svg-r-rotulo{fill:var(--tinta);font-family:var(--texto);font-size:15px}
+@media (max-width:1024px){
+.pie-interior{grid-template-columns:1fr}
+}
+@media (max-width:860px){
+.js .menu-boton{display:inline-block}
+.js .menu{display:none;width:100%;padding-bottom:12px}
+.js .menu.abierto{display:block}
+.js .menu ul{flex-direction:column;gap:0}
+}
+@media (max-width:600px){
+html{scroll-padding-top:150px}
+.js{scroll-padding-top:88px}
+.placa{padding:28px 20px}
+.bloque{padding:56px 16px}
+.portada{padding:64px 16px 48px}
+.cabecera-interior{padding:0 16px}
+.ficha{grid-template-columns:1fr;gap:2px}
+.ficha dd{margin-bottom:10px}
+.indice-grupo li{flex-direction:column;gap:2px}
+.pie{padding:48px 16px 32px}
+}
+@media (prefers-reduced-motion:reduce){
+*,*::before,*::after{transition:none !important;animation:none !important}
+}
+</style>
+<script type="application/ld+json">{"@context": "https://schema.org", "@graph": [{"@type": "WebSite", "@id": "https://forfit.blog/#sitio", "url": "https://forfit.blog/", "name": "forfit", "inLanguage": "es-BO", "publisher": {"@id": "https://forfit.blog/#organizacion"}}, {"@type": "Person", "@id": "https://forfit.blog/#titular", "name": "JORGE ELIECER VELASCO CALVO", "email": "soporte@forfit.blog", "telephone": "+591 68584103", "address": {"@type": "PostalAddress", "streetAddress": "Rumi - Rumi, Av. Final", "addressLocality": "Sucre", "addressCountry": "BO"}}, {"@type": "EducationalOrganization", "@id": "https://forfit.blog/#organizacion", "name": "forfit", "url": "https://forfit.blog/", "email": "soporte@forfit.blog", "telephone": "+591 68584103", "address": {"@type": "PostalAddress", "streetAddress": "Rumi - Rumi, Av. Final", "addressLocality": "Sucre", "addressCountry": "BO"}, "founder": {"@id": "https://forfit.blog/#titular"}}, {"@type": "Article", "@id": "https://forfit.blog/#guia", "headline": "Proporciones del gasto: método para leer un presupuesto por el peso relativo de cada categoría", "description": "Método para leer un presupuesto doméstico por el peso relativo de cada categoría, con ejemplo hipotético en base 100 y apartado de limitaciones.", "datePublished": "2026-09-24", "dateModified": "2026-09-24", "inLanguage": "es-BO", "author": {"@id": "https://forfit.blog/#titular"}, "publisher": {"@id": "https://forfit.blog/#organizacion"}, "mainEntityOfPage": "https://forfit.blog/#guia", "isPartOf": {"@id": "https://forfit.blog/#sitio"}}]}</script>
+</head>
+<body>
+<a class="salto" href="#contenido">Saltar al contenido</a>
+<header class="cabecera">
+<div class="cabecera-interior">
+<a class="marca" href="#inicio">forfit</a>
+<button class="menu-boton" id="menu-boton" type="button" aria-expanded="false" aria-controls="menu">Menú</button>
+<nav class="menu" id="menu" aria-label="Principal">
+<ul>
+<li><a href="#inicio">Inicio</a></li>
+<li><a href="#areas">Áreas</a></li>
+<li><a href="#guia">Guía</a></li>
+<li><a href="#nosotros">Nosotros</a></li>
+<li><a href="#politicas">Políticas</a></li>
+<li><a href="#contacto">Contacto</a></li>
+</ul>
+</nav>
+</div>
+</header>
+<main id="contenido" tabindex="-1">
+<section class="portada" id="inicio" aria-labelledby="inicio-t">
+<h1 id="inicio-t">forfit</h1>
+<p class="portada-lema">Cuatro áreas para leer el gasto del hogar, entender los costos de un negocio pequeño, interpretar documentos económicos y llevar un registro ordenado.</p>
+<p class="portada-aviso">Portal solo informativo: explica conceptos generales con ejemplos hipotéticos y no presta servicios financieros ni asesoría sobre casos concretos.</p>
+<figure class="motivo">
+<svg viewBox="0 0 960 560" role="img" aria-labelledby="motivo-t motivo-d" focusable="false"><title id="motivo-t">Carta de las cuatro áreas de forfit</title><desc id="motivo-d">Cuatro agrupaciones de puntos unidos por líneas finas sobre una cuadrícula de coordenadas: Presupuesto, Costos, Documentos y Registro. Cada punto menor corresponde a una entrada del área. Una línea discontinua une Presupuesto con Registro e indica que la categoría enlaza ambas áreas.</desc><path class="svg-reticula" d="M80 0V560M160 0V560M240 0V560M320 0V560M400 0V560M480 0V560M560 0V560M640 0V560M720 0V560M800 0V560M880 0V560M0 80H960M0 160H960M0 240H960M0 320H960M0 400H960M0 480H960"/><path class="svg-linea" d="M240 160L130 100M240 160L330 70M240 160L180 260M130 100L330 70"/><path class="svg-linea" d="M720 160L620 90M720 160L840 70M720 160L660 260M620 90L840 70"/><path class="svg-linea" d="M720 400L630 330M720 400L820 300M720 400L680 500M630 330L820 300"/><path class="svg-linea" d="M240 400L130 340M240 400L330 310M240 400L170 500M130 340L330 310"/><path class="svg-ambar" d="M240 170V390"/><circle class="svg-punto" cx="130" cy="100" r="4"/><circle class="svg-punto" cx="330" cy="70" r="4"/><circle class="svg-punto" cx="180" cy="260" r="4"/><circle class="svg-centro" cx="240" cy="160" r="8"/><circle class="svg-punto" cx="620" cy="90" r="4"/><circle class="svg-punto" cx="840" cy="70" r="4"/><circle class="svg-punto" cx="660" cy="260" r="4"/><circle class="svg-centro" cx="720" cy="160" r="8"/><circle class="svg-punto" cx="630" cy="330" r="4"/><circle class="svg-punto" cx="820" cy="300" r="4"/><circle class="svg-punto" cx="680" cy="500" r="4"/><circle class="svg-centro" cx="720" cy="400" r="8"/><circle class="svg-punto" cx="130" cy="340" r="4"/><circle class="svg-punto" cx="330" cy="310" r="4"/><circle class="svg-punto" cx="170" cy="500" r="4"/><circle class="svg-centro" cx="240" cy="400" r="8"/><text class="svg-rotulo" x="258" y="166" text-anchor="start">Presupuesto</text><text class="svg-rotulo" x="738" y="166" text-anchor="start">Costos</text><text class="svg-rotulo" x="738" y="406" text-anchor="start">Documentos</text><text class="svg-rotulo" x="258" y="406" text-anchor="start">Registro</text><text class="svg-rotulo-ambar" x="226" y="286" text-anchor="end">la categoría</text><text class="svg-rotulo-ambar" x="226" y="306" text-anchor="end">enlaza ambas áreas</text></svg>
+<figcaption>Carta de las áreas. Cada punto central es un área; cada punto menor, una de sus entradas.
+<ul class="leyenda">
+<li><span>Presupuesto</span> gasto del hogar</li>
+<li><span>Costos</span> negocio pequeño</li>
+<li><span>Documentos</span> lectura concepto por concepto</li>
+<li><span>Registro</span> orden y conservación</li>
+</ul>
+</figcaption>
+</figure>
+</section>
+<div id="areas">
+<section class="bloque area" id="area-presupuesto" aria-labelledby="area-presupuesto-t">
+<div class="seccion-cabecera"><h2 id="area-presupuesto-t">Presupuesto del hogar por categorías</h2><p>Cómo se agrupa el gasto doméstico y qué revela la proporción entre categorías.</p></div>
+<div class="placa">
+<p class="aviso-area">El contenido de esta área es general y descriptivo. Las decisiones sobre el presupuesto de un hogar concreto corresponden a un contador público o a un profesional habilitado en Bolivia.</p>
+<article class="entrada" id="e-categorias" aria-labelledby="e-categorias-t"><h3 id="e-categorias-t">Qué es una categoría de gasto y por qué se define antes de sumar</h3><p class="resumen">Una categoría agrupa pagos que responden a una misma necesidad, y definirla antes de sumar evita que un gasto se cuente dos veces o quede sin lugar.</p><p>Un presupuesto del hogar empieza por una decisión que parece menor: en qué grupos se van a ordenar los pagos. Si esa decisión se toma a mitad del mes, cada gasto nuevo obliga a inventar un rótulo, y al final aparecen grupos que se superponen, como «comida» y «supermercado», que mezclan una necesidad con un lugar de compra.</p><p>El criterio más estable es agrupar por necesidad atendida: vivienda y servicios, alimentación, transporte, educación, vestimenta y hogar, y un grupo final para lo que no encaja en ninguno. La lista exacta puede variar de una casa a otra; lo que importa es que cada pago tenga un solo lugar posible y que la regla para asignarlo se pueda escribir en una línea.</p><p>Conviene también fijar qué ocurre con los pagos mixtos. Una compra que incluye alimentos y artículos de limpieza puede dividirse entre dos categorías o asignarse entera a la que pesa más; cualquiera de las dos opciones sirve si se aplica siempre igual. Lo que distorsiona la lectura es cambiar de criterio de un mes a otro.</p><p>Una vez escritas, las categorías se mantienen durante varios períodos. Solo así las comparaciones posteriores miden cambios en el gasto y no cambios en la forma de clasificarlo.</p></article>
+<!-- Unidad publicitaria opcional: insertar en este punto, sobre la placa clara y entre dos entradas completas. Mantener al menos 48 px de distancia de cualquier elemento decorativo. No insertar sobre el fondo noche, dentro de una entrada ni en los documentos legales. -->
+<article class="entrada" id="e-fijo-variable" aria-labelledby="e-fijo-variable-t"><h3 id="e-fijo-variable-t">Gasto fijo, gasto variable y gasto ocasional en el hogar</h3><p class="resumen">Separar los pagos según su regularidad muestra qué parte del presupuesto se repite casi sin cambios y qué parte depende de decisiones del mes.</p><p>Además de la categoría, cada pago tiene un ritmo. El gasto fijo se repite con el mismo monto o con variaciones mínimas: el alquiler, una pensión escolar, un servicio con tarifa plana. El gasto variable también se repite, pero su monto cambia según el consumo, como la alimentación o el transporte diario. El gasto ocasional aparece pocas veces al año y suele ser el que desordena un mes concreto.</p><p>Esta segunda clasificación no reemplaza a la primera; la cruza. Dentro de vivienda y servicios puede haber un pago fijo y otro variable, y dentro de vestimenta casi todo tiende a ser ocasional. Anotar las dos marcas en cada registro permite leer el presupuesto desde dos ángulos sin rehacerlo.</p><p>La utilidad está en la lectura. Si en un período hipotético el gasto fijo representa 55 de cada 100 unidades gastadas, esa parte se modifica poco de un mes a otro, y cualquier variación visible del total vendrá sobre todo de los otros 45. Esa cifra es solo ilustrativa y no indica una proporción adecuada para ningún hogar.</p><p>Los gastos ocasionales conviene registrarlos aunque sean raros: omitirlos hace que los meses normales parezcan más holgados de lo que el año completo muestra.</p></article>
+<!-- Unidad publicitaria opcional: insertar en este punto, sobre la placa clara y entre dos entradas completas. Mantener al menos 48 px de distancia de cualquier elemento decorativo. No insertar sobre el fondo noche, dentro de una entrada ni en los documentos legales. -->
+<article class="entrada" id="e-que-revela" aria-labelledby="e-que-revela-t"><h3 id="e-que-revela-t">Qué revela la proporción entre categorías y qué deja fuera</h3><p class="resumen">La proporción muestra cuánto pesa cada grupo dentro del total, pero no dice si ese peso es alto o bajo para una situación concreta.</p><p>Expresar cada categoría como parte de 100 elimina el efecto del monto absoluto. Dos meses con totales distintos pueden compararse directamente si se mira el peso relativo: si alimentación pasa de 27 a 25 de cada 100 en un ejemplo hipotético, el dato describe un cambio en la composición del gasto, no necesariamente un cambio en lo que se compró.</p><p>Esa última precisión es importante. Una categoría puede perder peso porque bajó su monto o porque otra categoría creció. La proporción, por sí sola, no distingue entre ambas causas; para saberlo hay que volver a los montos del período y comparar las dos columnas.</p><p>Tampoco existe una proporción correcta aplicable a todos los hogares. El número de personas, la ciudad, la vivienda propia o alquilada y las etapas de la vida cambian por completo el reparto. Las cifras que circulan como pauta general no describen ningún caso concreto y no se usan aquí como referencia.</p><p>Lo que sí aporta la proporción es una pregunta ordenada: qué categoría cambió de peso, desde cuándo y por qué. Responderla con los registros propios es más informativo que compararse con un reparto ajeno.</p></article>
+</div>
+</section><section class="bloque area" id="area-costos" aria-labelledby="area-costos-t">
+<div class="seccion-cabecera"><h2 id="area-costos-t">Costos de un negocio pequeño</h2><p>Estructura fija, costo variable y punto de equilibrio explicados sin fórmulas.</p></div>
+<div class="placa">
+<p class="aviso-area">El contenido de esta área es general y descriptivo. Las decisiones sobre los costos de un negocio concreto corresponden a un contador público o a un profesional habilitado en Bolivia.</p>
+<article class="entrada" id="e-estructura-fija" aria-labelledby="e-estructura-fija-t"><h3 id="e-estructura-fija-t">La estructura fija: lo que se paga aunque no se venda nada</h3><p class="resumen">El costo fijo de un negocio pequeño es el conjunto de pagos que se mantienen durante el período sin importar cuántas unidades se vendan.</p><p>Todo negocio tiene una base de gastos que existe antes de la primera venta del mes. El alquiler del local, los sueldos pactados por mes, los servicios con cargo mínimo, el mantenimiento de equipos o los honorarios por servicios contables recurrentes forman esa base. Se les llama fijos porque no dependen del volumen vendido dentro de un rango normal de actividad.</p><p>Fijo no significa inmutable. Un alquiler puede ajustarse al renovar el contrato y un sueldo puede cambiar de un año a otro. La palabra describe su relación con la venta: si el negocio vende la mitad de lo habitual durante una semana, estos pagos siguen siendo los mismos.</p><p>Para leer la estructura fija conviene listarla completa y expresarla en base 100. En un ejemplo hipotético, el local podría representar 40 de cada 100 unidades de costo fijo, el personal 45 y los servicios y el mantenimiento los 15 restantes. Esa composición indica qué componente determina el piso de gastos del negocio.</p><p>Un descuido frecuente es dejar fuera los pagos anuales, como una licencia de funcionamiento o una revisión técnica de equipos. Si se pagan una vez al año, se reparten entre los doce meses para que la base mensual refleje el costo real.</p></article>
+<!-- Unidad publicitaria opcional: insertar en este punto, sobre la placa clara y entre dos entradas completas. Mantener al menos 48 px de distancia de cualquier elemento decorativo. No insertar sobre el fondo noche, dentro de una entrada ni en los documentos legales. -->
+<article class="entrada" id="e-costo-variable" aria-labelledby="e-costo-variable-t"><h3 id="e-costo-variable-t">El costo variable: lo que acompaña a cada unidad vendida</h3><p class="resumen">El costo variable crece o disminuye con la cantidad vendida, porque corresponde a lo que se consume para producir o entregar cada unidad.</p><p>Si un negocio prepara alimentos, cada porción consume ingredientes, envase y una parte del gas de la cocina. Si vende productos comprados a un proveedor, cada unidad lleva su precio de compra y, a veces, una comisión o un costo de envío. Esos montos aparecen solo cuando hay venta; si no se vende, no se generan.</p><p>La forma más clara de expresarlo es por unidad. En un caso hipotético con precio de venta de 100 unidades monetarias, el costo variable podría ser 60, lo que deja 40 por unidad para cubrir la estructura fija. Esa diferencia se conoce como margen de contribución, y es la cifra que conecta este tema con el punto de equilibrio.</p><p>Hay costos que no son del todo fijos ni del todo variables. La electricidad de un taller tiene un cargo básico que se paga siempre y un consumo que sube con la producción. En ese caso se separa en dos partes y cada una se ubica en su grupo.</p><p>El costo variable tampoco es constante en el tiempo: cambia con los precios de los insumos. Por eso se revisa periódicamente, y cada revisión se anota con su fecha para saber con qué cifra se hizo cada cálculo.</p></article>
+<!-- Unidad publicitaria opcional: insertar en este punto, sobre la placa clara y entre dos entradas completas. Mantener al menos 48 px de distancia de cualquier elemento decorativo. No insertar sobre el fondo noche, dentro de una entrada ni en los documentos legales. -->
+<article class="entrada" id="e-equilibrio" aria-labelledby="e-equilibrio-t"><h3 id="e-equilibrio-t">El punto de equilibrio contado con palabras</h3><p class="resumen">El punto de equilibrio es la cantidad de ventas en la que lo que aporta cada unidad alcanza justo para cubrir la estructura fija, sin sobrante ni faltante.</p><p>La idea se entiende sin fórmulas. Cada unidad vendida deja una diferencia entre su precio y su costo variable. Esa diferencia no es ganancia todavía: primero se destina a pagar la estructura fija del período. Mientras la suma de esas diferencias no alcance el total de costos fijos, el negocio no ha cubierto su base.</p><p>En un ejemplo hipotético, si cada unidad deja 40 y la estructura fija del mes suma 4.000, harán falta 100 unidades para cubrirla. Por debajo de esa cantidad queda un faltante; por encima, cada unidad adicional aporta su diferencia completa al resultado. Las cifras son ilustrativas y no describen ningún negocio real.</p><p>El valor del concepto está en las preguntas que permite hacer. Si sube el costo de un insumo, la diferencia por unidad baja y el punto de equilibrio se desplaza hacia más unidades. Si crece la estructura fija, ocurre lo mismo. Leer el equilibrio es leer cómo se mueve ese umbral cuando cambia alguno de sus componentes.</p><p>Es una herramienta de lectura, no un pronóstico. Supone un precio estable y una mezcla de productos constante, condiciones que en la práctica rara vez se cumplen del todo.</p></article>
+</div>
+</section><section class="bloque area" id="area-documentos" aria-labelledby="area-documentos-t">
+<div class="seccion-cabecera"><h2 id="area-documentos-t">Lectura de documentos económicos</h2><p>Recibos, boletas, estados de cuenta y liquidaciones, concepto por concepto.</p></div>
+<div class="placa">
+<p class="aviso-area">El contenido de esta área es general y descriptivo. La interpretación de un documento concreto y sus efectos corresponden a un contador público o a un profesional habilitado en Bolivia.</p>
+<article class="entrada" id="e-recibo-boleta" aria-labelledby="e-recibo-boleta-t"><h3 id="e-recibo-boleta-t">El recibo y la boleta: quién, qué, cuándo y cuánto</h3><p class="resumen">Un recibo o una boleta se lee en cuatro bloques, quién emite, qué se entregó, en qué fecha y por qué monto, y cada bloque debe coincidir con lo ocurrido.</p><p>El primer bloque identifica al emisor: nombre o razón social, número de identificación tributaria cuando corresponde y domicilio. Si falta alguno de estos datos, el documento pierde valor como respaldo, porque no permite saber con certeza quién recibió el pago.</p><p>El segundo bloque describe lo entregado. Una descripción genérica como «varios» impide verificar después qué se compró; una descripción por concepto, con cantidad y precio unitario, permite reconstruir la operación. Conviene revisar que la cantidad multiplicada por el precio unitario coincida con el importe de cada línea.</p><p>El tercer bloque es la fecha, que ubica el gasto en un período. Un documento emitido el primer día del mes siguiente pertenece a ese mes siguiente, aunque la compra se haya decidido antes; mezclar fechas es una de las causas más comunes de cierres que no cuadran.</p><p>El cuarto bloque es el total. Allí se distinguen el subtotal, los impuestos incluidos o añadidos y el importe final. En Bolivia, la emisión y el contenido obligatorio de las facturas y documentos equivalentes siguen la normativa tributaria vigente, cuyo detalle para cada situación corresponde confirmar con un profesional habilitado.</p></article>
+<!-- Unidad publicitaria opcional: insertar en este punto, sobre la placa clara y entre dos entradas completas. Mantener al menos 48 px de distancia de cualquier elemento decorativo. No insertar sobre el fondo noche, dentro de una entrada ni en los documentos legales. -->
+<article class="entrada" id="e-estado-cuenta" aria-labelledby="e-estado-cuenta-t"><h3 id="e-estado-cuenta-t">El estado de cuenta: saldo anterior, movimientos y saldo final</h3><p class="resumen">Un estado de cuenta resume un período en una sola igualdad: saldo anterior, más cargos, menos abonos, igual a saldo final.</p><p>Muchos servicios envían periódicamente un estado de cuenta: el suministro de agua, la telefonía, la administración de un edificio o un proveedor habitual de un negocio. Aunque el diseño cambie de un emisor a otro, la lógica es siempre la misma y se puede comprobar con una suma sencilla.</p><p>La lectura empieza por el saldo anterior, que debe coincidir con el saldo final del documento del período previo. Si no coincide, debe existir una línea de ajuste que lo explique. Después vienen los movimientos: los cargos, que aumentan el monto adeudado, y los abonos, que lo reducen.</p><p>En un ejemplo hipotético en base 100, si el saldo anterior es 20, los cargos del período suman 100 y los abonos 90, el saldo final debe ser 30. Si el documento muestra otra cifra, la diferencia está en alguna línea que no se ha leído o en un concepto agrupado.</p><p>Conviene revisar cada cargo contra su respaldo: consumo medido, tarifa aplicada y fecha. Los cargos por reconexión, mora o gestión suelen aparecer con nombres breves y conviene identificarlos, porque explican diferencias que a primera vista parecen errores. Si una línea no se entiende, la vía es pedir la aclaración al emisor por sus canales oficiales.</p></article>
+<!-- Unidad publicitaria opcional: insertar en este punto, sobre la placa clara y entre dos entradas completas. Mantener al menos 48 px de distancia de cualquier elemento decorativo. No insertar sobre el fondo noche, dentro de una entrada ni en los documentos legales. -->
+<article class="entrada" id="e-liquidacion" aria-labelledby="e-liquidacion-t"><h3 id="e-liquidacion-t">La liquidación: del monto bruto al monto neto</h3><p class="resumen">Una liquidación explica cómo se pasa de un monto bruto a un monto neto, enumerando cada concepto que suma y cada concepto que resta.</p><p>El término se usa para varios documentos: la papeleta que acompaña un sueldo, el cálculo al terminar una relación laboral o la rendición de un servicio prestado por comisión. En todos ellos la estructura es parecida: un bloque de conceptos que suman, un bloque de conceptos que restan y un resultado.</p><p>Los conceptos que suman incluyen el haber básico y los montos adicionales que correspondan, como horas extraordinarias o bonos pactados. Los que restan incluyen aportes y retenciones previstos por la normativa, además de descuentos acordados. Cada línea debería mostrar su base de cálculo, no solo el resultado.</p><p>Un ejemplo hipotético en base 100 ayuda a leer la proporción: si el total ganado es 100 y los descuentos suman 14, el líquido pagable es 86. La cifra solo ilustra la mecánica; los porcentajes reales dependen de normas que cambian y de cada situación.</p><p>La lectura útil consiste en comprobar tres cosas: que la suma de conceptos positivos coincide con el total ganado, que cada descuento tiene un nombre identificable y que la resta final es correcta. Cuando un concepto no se entiende, se pide la explicación a quien emite el documento. La interpretación de un caso laboral concreto corresponde a un profesional habilitado.</p></article>
+</div>
+</section><section class="bloque area" id="area-registro" aria-labelledby="area-registro-t">
+<div class="seccion-cabecera"><h2 id="area-registro-t">Registro y orden</h2><p>Cómo se lleva un registro que sirva para decidir, y qué se conserva de cada período.</p></div>
+<div class="placa">
+<p class="aviso-area">El contenido de esta área es general y descriptivo. Los plazos y obligaciones de registro aplicables a un caso concreto corresponden a un contador público o a un profesional habilitado en Bolivia.</p>
+<article class="entrada" id="e-datos-minimos" aria-labelledby="e-datos-minimos-t"><h3 id="e-datos-minimos-t">Qué datos mínimos lleva un registro que sirva para decidir</h3><p class="resumen">Un registro útil anota en cada línea la fecha, el concepto, la categoría, el monto y el respaldo, y nada que no vaya a consultarse después.</p><p>Registrar no es acumular datos. Un registro sirve cuando permite responder preguntas concretas: cuánto se destinó a una categoría, cuándo cambió un gasto fijo, qué documento respalda un pago. Si una columna nunca se consulta, solo añade trabajo y aumenta la probabilidad de abandonar el hábito.</p><p>Cinco datos cubren la mayoría de las preguntas. La fecha ubica el movimiento en un período. El concepto dice qué fue, con palabras que dentro de seis meses sigan siendo claras. La categoría lo sitúa en el esquema definido de antemano. El monto registra la cifra exacta, sin redondeos. El respaldo indica dónde está el documento que lo acredita.</p><p>A esos cinco puede añadirse una marca de regularidad, fijo, variable u ocasional, que permite leer el mismo registro desde otro ángulo sin rehacerlo. En un negocio pequeño es útil además separar desde el inicio lo que pertenece al negocio de lo que pertenece al hogar, porque mezclarlos vuelve ilegibles ambos registros.</p><p>El soporte importa menos que la constancia. Un cuaderno, una planilla o una aplicación cumplen la función si se usan con el mismo criterio. Lo decisivo es anotar cerca del momento del gasto: la memoria reconstruye mal los montos pequeños, y esos montos, sumados, suelen pesar más de lo que parece.</p></article>
+<!-- Unidad publicitaria opcional: insertar en este punto, sobre la placa clara y entre dos entradas completas. Mantener al menos 48 px de distancia de cualquier elemento decorativo. No insertar sobre el fondo noche, dentro de una entrada ni en los documentos legales. -->
+<article class="entrada" id="e-cierre" aria-labelledby="e-cierre-t"><h3 id="e-cierre-t">El cierre del período: cuadrar, anotar diferencias y no corregir hacia atrás</h3><p class="resumen">Cerrar un período consiste en comparar lo registrado con los documentos y el dinero disponible, anotar cualquier diferencia y dejar ese período fijo.</p><p>El cierre es el momento en que el registro se contrasta con la realidad. Se suman los movimientos del período, se comparan con los documentos reunidos y se verifica que el saldo final coincida con lo que efectivamente hay. Si todo coincide, el período queda cerrado; si no, aparece una diferencia que hay que explicar.</p><p>Las diferencias pequeñas son normales: un gasto sin anotar, un redondeo, un documento traspapelado. Como práctica de orden, se registran como tales, con una línea que diga «diferencia de cierre» y su monto, en lugar de modificar cifras anteriores para que el total cuadre.</p><p>No corregir hacia atrás tiene una razón concreta. Si cada mes se retocan los meses anteriores, las comparaciones entre períodos dejan de ser confiables, porque ya no se sabe qué cifra era la original. Una corrección necesaria se hace en el período en que se descubre, con una nota que indique a qué fecha corresponde.</p><p>Un cierre mensual breve, hecho siempre en la misma fecha, es más útil que uno exhaustivo hecho de vez en cuando. Con el tiempo, el tamaño de las diferencias de cierre se vuelve en sí mismo un indicador de la calidad del registro.</p></article>
+<!-- Unidad publicitaria opcional: insertar en este punto, sobre la placa clara y entre dos entradas completas. Mantener al menos 48 px de distancia de cualquier elemento decorativo. No insertar sobre el fondo noche, dentro de una entrada ni en los documentos legales. -->
+<article class="entrada" id="e-conservar" aria-labelledby="e-conservar-t"><h3 id="e-conservar-t">Qué se conserva de cada período y durante cuánto tiempo</h3><p class="resumen">De cada período se conserva el registro cerrado, los documentos que respaldan cada línea y una nota breve con los criterios usados, durante el plazo que fije la normativa aplicable.</p><p>Conservar no es guardar todo. De cada período interesa mantener tres piezas: el registro tal como quedó al cierre, los documentos que respaldan sus líneas y una nota con los criterios aplicados, como las categorías vigentes o cualquier cambio de clasificación. Con esas tres piezas, cualquier cifra puede reconstruirse tiempo después.</p><p>El orden físico o digital sigue la misma lógica que el registro. Una carpeta por período, y dentro de ella los documentos en el orden de las líneas, permite encontrar un respaldo en segundos. Si los documentos son en papel, conviene digitalizar los que se deterioran con facilidad, como algunos comprobantes impresos en papel térmico.</p><p>El plazo de conservación depende del tipo de documento y de quién lo emite o lo recibe. Para un hogar, el criterio suele ser práctico: mientras un pago pueda ser objeto de reclamo o verificación. Para un negocio, la normativa tributaria y comercial de Bolivia establece plazos mínimos que no se detallan aquí porque pueden modificarse; su alcance para un caso concreto se confirma con un contador público.</p><p>Al vencer el plazo que corresponda, los documentos con datos personales se destruyen de forma que no puedan leerse, en lugar de desecharlos enteros.</p></article>
+</div>
+</section>
+</div>
+<article class="bloque" id="guia" aria-labelledby="guia-t">
+<div class="seccion-cabecera"><h2 id="guia-t">Proporciones del gasto: método para leer un presupuesto por el peso relativo de cada categoría</h2><p>Guía principal del área de presupuesto.</p></div>
+<div class="placa">
+<p class="fechas">Publicado el <time datetime="2026-09-24">24 de septiembre de 2026</time> · Revisado el <time datetime="2026-09-24">24 de septiembre de 2026</time> · Por JORGE ELIECER VELASCO CALVO</p>
+<p>Un presupuesto doméstico suele leerse por montos: cuánto se pagó de alquiler, cuánto en alimentación, cuánto en transporte. Esa lectura es necesaria, pero tiene un límite. Los montos cambian por razones que no dicen nada sobre la forma del gasto: un mes con más días, un ajuste de precios generalizado, un ingreso extraordinario que eleva todo el nivel. Esta guía describe un método para leer el mismo presupuesto por el peso relativo de cada categoría, de modo que la atención pase del tamaño del gasto a su composición.</p>
+<h3>Por qué mirar el peso y no solo el monto</h3>
+<p>Cuando cada categoría se expresa como parte de un total de 100, dos períodos con totales distintos quedan en la misma escala. La pregunta deja de ser «cuánto se gastó» y pasa a ser «cómo se repartió lo que se gastó». Esa segunda pregunta revela cambios que los montos esconden. Una categoría puede mantener su monto y, sin embargo, perder peso porque otra creció; o puede subir de monto solo porque todo el nivel de gasto subió, sin que su lugar en el conjunto se haya modificado.</p>
+<p>La lectura por proporciones no sustituye a la de montos: la complementa. El método que sigue usa ambas y deja claro en cada paso cuál se está mirando.</p>
+<h3>Paso uno: fijar las categorías y el período</h3>
+<p>Antes de calcular nada se definen dos cosas. La primera es la lista de categorías, con una regla escrita para asignar cada pago; la entrada <a href="#e-categorias">sobre qué es una categoría de gasto</a> desarrolla ese criterio. La segunda es el período de comparación. Un mes es la unidad más habitual, pero algunos hogares tienen gastos que se concentran en ciertos meses, como el inicio del año escolar. En esos casos, comparar trimestres o comparar el mismo mes de años distintos evita que un gasto estacional parezca un cambio de fondo.</p>
+<p>Las categorías y el período se mantienen fijos durante toda la comparación. Si se cambian a mitad del camino, las proporciones resultantes miden el cambio de criterio y no el cambio del gasto.</p>
+<h3>Paso dos: llevar cada categoría a base 100</h3>
+<p>Con los montos del período ya sumados por categoría, cada uno se divide entre el total del período y se multiplica por 100. El resultado indica cuántas de cada 100 unidades gastadas correspondieron a esa categoría. Conviene redondear a números enteros para la lectura y conservar los decimales en el registro; así, si la columna redondeada difiere en una unidad del total, se sabe que la causa es el redondeo y no un error.</p>
+<p>En este paso aparece una comprobación útil: la columna debe sumar 100. Si suma otra cifra, algún monto quedó fuera o se contó dos veces, y ese defecto está en el registro, no en el método.</p>
+<figure class="motivo-reducido">
+<svg viewBox="0 0 480 320" role="img" aria-labelledby="reducido-t reducido-d" focusable="false"><title id="reducido-t">Constelación del área de presupuesto</title><desc id="reducido-d">Un punto central rotulado Presupuesto unido por líneas finas a tres puntos: categorías, ritmo del gasto y proporción, que corresponden a las tres entradas del área.</desc><path class="svg-r-reticula" d="M80 0V320M160 0V320M240 0V320M320 0V320M400 0V320M0 80H480M0 160H480M0 240H480"/><path class="svg-r-linea" d="M180 160L70 100M180 160L270 70M180 160L120 260M70 100L270 70"/><circle class="svg-r-punto" cx="70" cy="100" r="4"/><text class="svg-r-rotulo" x="70" y="86" text-anchor="middle">categorías</text><circle class="svg-r-punto" cx="270" cy="70" r="4"/><text class="svg-r-rotulo" x="270" y="56" text-anchor="middle">ritmo del gasto</text><circle class="svg-r-punto" cx="120" cy="260" r="4"/><text class="svg-r-rotulo" x="120" y="286" text-anchor="middle">proporción</text><circle class="svg-r-centro" cx="180" cy="160" r="7"/><text class="svg-r-rotulo" x="196" y="165" text-anchor="start">Presupuesto</text></svg>
+<figcaption>Constelación del área de presupuesto: las tres entradas que sostienen este método alrededor de su punto central.</figcaption>
+</figure>
+<h3>Paso tres: comparar el peso entre períodos</h3>
+<p>Con dos columnas en base 100, la comparación se hace restando una de otra. La diferencia se expresa en puntos y no en porcentajes, para no confundir dos magnitudes distintas: que una categoría pase de 25 a 27 es una diferencia de 2 puntos, aunque en términos relativos esa categoría haya crecido un 8 por ciento. Hablar de puntos mantiene la lectura en la escala del presupuesto completo.</p>
+<p>La suma de todas las diferencias es siempre cero. Lo que una categoría gana en peso lo pierde otra, y esa propiedad obliga a leer el conjunto: ningún cambio de proporción se explica mirando una sola fila.</p>
+<h3>Un ejemplo hipotético en base 100</h3>
+<p>La tabla siguiente muestra un presupuesto ficticio en dos períodos consecutivos. Las cifras no provienen de ningún hogar real ni representan un reparto aconsejable; se eligieron solo para que la mecánica de lectura sea visible.</p>
+<div class="tabla-marco" role="region" aria-labelledby="tabla-t" tabindex="0">
+<table class="tabla-datos">
+<caption id="tabla-t">Presupuesto hipotético expresado en base 100. Cada columna de período suma 100; la diferencia se expresa en puntos.</caption>
+<thead><tr><th scope="col">Categoría</th><th scope="col" class="num">Período A</th><th scope="col" class="num">Período B</th><th scope="col" class="num">Diferencia</th></tr></thead>
+<tbody>
+<tr><th scope="row">Vivienda y servicios</th><td class="num">34</td><td class="num">36</td><td class="num">+2</td></tr>
+<tr><th scope="row">Alimentación</th><td class="num">27</td><td class="num">25</td><td class="num">−2</td></tr>
+<tr><th scope="row">Transporte</th><td class="num">11</td><td class="num">12</td><td class="num">+1</td></tr>
+<tr><th scope="row">Educación</th><td class="num">9</td><td class="num">9</td><td class="num">0</td></tr>
+<tr><th scope="row">Vestimenta y hogar</th><td class="num">8</td><td class="num">6</td><td class="num">−2</td></tr>
+<tr><th scope="row">Otros gastos</th><td class="num">11</td><td class="num">12</td><td class="num">+1</td></tr>
+</tbody>
+</table>
+</div>
+<p>En el ejemplo, vivienda y servicios gana 2 puntos, mientras que alimentación y vestimenta y hogar pierden 2 cada una. Transporte y otros gastos ganan 1 punto cada una, y educación no cambia. La lectura correcta no es que en el segundo período «se gastó más en vivienda», porque la tabla no muestra montos. Lo que muestra es que vivienda ocupa una parte mayor del conjunto. Para saber si eso ocurrió porque su monto subió o porque el total bajó, hay que volver a los montos originales, y esa verificación forma parte del método.</p>
+<h3>Paso cuatro: formular preguntas, no conclusiones</h3>
+<p>El resultado de esta lectura no es un veredicto sino una lista de preguntas ordenadas por tamaño. Las categorías con mayor diferencia en puntos se examinan primero: qué pagos concretos las componen, cuáles cambiaron y si el cambio fue puntual o se repite. A menudo la respuesta está en un único pago ocasional que cayó en ese período; otras veces, en un gasto fijo que se ajustó y que seguirá pesando igual en los meses siguientes.</p>
+<p>Distinguir entre ambos casos es la parte más informativa del ejercicio, y solo puede hacerse con el registro detallado a la vista. Por eso el método depende de un registro que conserve fecha, concepto, categoría y respaldo de cada línea, como se explica en el área de <a href="#area-registro">registro y orden</a>.</p>
+<h3>Limitaciones de este método</h3>
+<p>La lectura por proporciones tiene límites que conviene tener presentes. Primero, no dice nada sobre la suficiencia del gasto: una categoría puede mantener su peso y, aun así, no cubrir lo que el hogar necesita. Segundo, depende por completo de la calidad del registro; si los pagos se asignan con criterios cambiantes, las diferencias reflejan esos cambios y no la realidad. Tercero, con muchas categorías pequeñas, las diferencias de uno o dos puntos pueden deberse al redondeo. Cuarto, compara un hogar consigo mismo: no autoriza a juzgar el reparto de otro hogar ni a tomar como pauta cifras ajenas.</p>
+<p>Por último, es una herramienta descriptiva y general. No ofrece un diagnóstico de ninguna situación particular, y cualquier decisión sobre un caso concreto corresponde a un contador público o a un profesional habilitado en Bolivia.</p>
+</div>
+</article>
+<section class="bloque" id="indice" aria-labelledby="indice-t">
+<div class="seccion-cabecera"><h2 id="indice-t">Índice general</h2><p>Cada entrada figura con las coordenadas de su punto en la carta de la portada.</p></div>
+<div class="indice-grupo"><h3>Presupuesto</h3><ul><li><span class="coord">x 240 · y 160</span><a href="#area-presupuesto">Área: Presupuesto del hogar por categorías</a></li><li><span class="coord">x 130 · y 100</span><a href="#e-categorias">Qué es una categoría de gasto y por qué se define antes de sumar</a></li><li><span class="coord">x 330 · y 070</span><a href="#e-fijo-variable">Gasto fijo, gasto variable y gasto ocasional en el hogar</a></li><li><span class="coord">x 180 · y 260</span><a href="#e-que-revela">Qué revela la proporción entre categorías y qué deja fuera</a></li></ul></div><div class="indice-grupo"><h3>Costos</h3><ul><li><span class="coord">x 720 · y 160</span><a href="#area-costos">Área: Costos de un negocio pequeño</a></li><li><span class="coord">x 620 · y 090</span><a href="#e-estructura-fija">La estructura fija: lo que se paga aunque no se venda nada</a></li><li><span class="coord">x 840 · y 070</span><a href="#e-costo-variable">El costo variable: lo que acompaña a cada unidad vendida</a></li><li><span class="coord">x 660 · y 260</span><a href="#e-equilibrio">El punto de equilibrio contado con palabras</a></li></ul></div><div class="indice-grupo"><h3>Documentos</h3><ul><li><span class="coord">x 720 · y 400</span><a href="#area-documentos">Área: Lectura de documentos económicos</a></li><li><span class="coord">x 630 · y 330</span><a href="#e-recibo-boleta">El recibo y la boleta: quién, qué, cuándo y cuánto</a></li><li><span class="coord">x 820 · y 300</span><a href="#e-estado-cuenta">El estado de cuenta: saldo anterior, movimientos y saldo final</a></li><li><span class="coord">x 680 · y 500</span><a href="#e-liquidacion">La liquidación: del monto bruto al monto neto</a></li></ul></div><div class="indice-grupo"><h3>Registro</h3><ul><li><span class="coord">x 240 · y 400</span><a href="#area-registro">Área: Registro y orden</a></li><li><span class="coord">x 130 · y 340</span><a href="#e-datos-minimos">Qué datos mínimos lleva un registro que sirva para decidir</a></li><li><span class="coord">x 330 · y 310</span><a href="#e-cierre">El cierre del período: cuadrar, anotar diferencias y no corregir hacia atrás</a></li><li><span class="coord">x 170 · y 500</span><a href="#e-conservar">Qué se conserva de cada período y durante cuánto tiempo</a></li></ul></div>
+</section>
+<section class="bloque" id="nosotros" aria-labelledby="nosotros-t">
+<div class="seccion-cabecera"><h2 id="nosotros-t">Nosotros</h2><p>Quién edita este sitio, cómo trabaja y de qué vive.</p></div>
+<div class="placa">
+<h3>Quién edita</h3>
+<p>forfit es un sitio editado por JORGE ELIECER VELASCO CALVO, titular del dominio forfit.blog y responsable de todo su contenido, con domicilio comercial en Rumi - Rumi, Av. Final, Sucre, Bolivia. Cada texto publicado pasa por su revisión antes de aparecer en el sitio y lleva su firma como editor responsable.</p>
+<h3>Cómo se elabora el contenido</h3>
+<p>Los textos parten de conceptos generales de organización doméstica, costos y lectura de documentos, redactados para que se entiendan sin conocimientos previos. Los ejemplos numéricos se expresan siempre en base 100 o en proporciones y se rotulan como hipotéticos, de modo que ninguna cifra se confunda con un dato real ni con una meta. Cuando un tema depende de una norma, el texto lo indica y remite a un profesional habilitado en lugar de resumir la norma de memoria. Cada entrada se revisa al menos una vez al año o cuando cambia una norma que la afecte.</p>
+<h3>Política de corrección de errores</h3>
+<p>Si un lector detecta un error de concepto, de cálculo o de redacción, puede comunicarlo al correo soporte@forfit.blog. Cada aviso se revisa en un plazo de diez días hábiles. Cuando el error se confirma, el texto se corrige y se actualiza su fecha de revisión; si la corrección cambia el sentido de una explicación, se deja constancia al pie de la entrada afectada.</p>
+<h3>Cómo se financia el sitio</h3>
+<p>El acceso al sitio es gratuito. Sus costos se cubren con publicidad de terceros que se muestra en espacios separados del contenido y claramente distinguibles de él. Los anunciantes no eligen temas, no revisan textos y no tienen relación editorial con el sitio. La presencia de un anuncio no implica recomendación de lo anunciado.</p>
+<h3>Límite de la actividad</h3>
+<p>forfit es un portal exclusivamente informativo y educativo. No atiende casos particulares, no emite diagnósticos individuales, no gestiona reclamos ante terceros y no presta servicios profesionales de ningún tipo. Las decisiones sobre un caso concreto corresponden a un contador público o a un profesional habilitado en Bolivia.</p>
+<h3>Ficha del titular</h3>
+<dl class="ficha"><dt>Nombre del sitio</dt><dd>forfit</dd><dt>Titular</dt><dd>JORGE ELIECER VELASCO CALVO</dd><dt>Dominio</dt><dd>forfit.blog</dd><dt>Correo de soporte</dt><dd><a href="mailto:soporte@forfit.blog">soporte@forfit.blog</a></dd><dt>Dirección comercial</dt><dd>Rumi - Rumi, Av. Final, Sucre, Bolivia</dd><dt>Teléfono</dt><dd><a href="tel:+59168584103">+591 68584103</a></dd><dt>País y ley de datos</dt><dd>Bolivia — Constitución Política del Estado (arts. 21 y 130), Ley N.º 164 y Decreto Supremo N.º 1793</dd></dl>
+</div>
+</section>
+<section class="bloque" id="contacto" aria-labelledby="contacto-t">
+<div class="seccion-cabecera"><h2 id="contacto-t">Contacto</h2><p>Consultas sobre el contenido, avisos de errores y ejercicio de derechos sobre datos personales.</p></div>
+<div class="placa">
+<h3>Datos de contacto</h3>
+<dl class="ficha" id="ficha-contacto"><dt>Nombre del sitio</dt><dd>forfit</dd><dt>Titular</dt><dd>JORGE ELIECER VELASCO CALVO</dd><dt>Dominio</dt><dd>forfit.blog</dd><dt>Correo de soporte</dt><dd><a href="mailto:soporte@forfit.blog">soporte@forfit.blog</a></dd><dt>Dirección comercial</dt><dd>Rumi - Rumi, Av. Final, Sucre, Bolivia</dd><dt>Teléfono</dt><dd><a href="tel:+59168584103">+591 68584103</a></dd><dt>País y ley de datos</dt><dd>Bolivia — Constitución Política del Estado (arts. 21 y 130), Ley N.º 164 y Decreto Supremo N.º 1793</dd></dl>
+<p class="atencion" id="aviso-phishing"><strong>Aviso de seguridad:</strong> forfit nunca solicita datos bancarios, números de cuenta, números de tarjeta, claves ni códigos de verificación, por ningún medio. Si recibe un mensaje que lo hace en nombre de este sitio, no responda y comuníquelo a soporte@forfit.blog.</p>
+<h3>Formulario</h3>
+<p>El formulario no guarda ni envía datos a ningún servidor: al pulsar el botón se abre su propio programa de correo con el mensaje preparado, y usted decide si lo envía. El tratamiento de lo que escriba se describe en la <a href="#privacidad">Política de Privacidad</a>.</p>
+<form class="formulario" id="formulario" action="mailto:soporte@forfit.blog" method="post" enctype="text/plain" autocomplete="off" novalidate>
+<div class="campo"><label for="f-nombre">Nombre</label><input id="f-nombre" name="nombre" type="text" autocomplete="off" required minlength="2" maxlength="80" aria-describedby="f-nombre-error"><span class="error" id="f-nombre-error" aria-live="polite"></span></div>
+<div class="campo"><label for="f-correo">Correo electrónico</label><input id="f-correo" name="correo" type="email" autocomplete="off" required maxlength="120" aria-describedby="f-correo-error"><span class="error" id="f-correo-error" aria-live="polite"></span></div>
+<div class="campo"><label for="f-mensaje">Mensaje</label><textarea id="f-mensaje" name="mensaje" rows="6" autocomplete="off" required minlength="10" maxlength="2000" aria-describedby="f-mensaje-error"></textarea><span class="error" id="f-mensaje-error" aria-live="polite"></span></div>
+<button class="boton" type="submit">Preparar el correo</button>
+<p class="estado" id="f-estado" role="status"></p>
+</form>
+</div>
+</section>
+<section class="bloque" id="aviso-descargo" aria-labelledby="aviso-descargo-t">
+<div class="seccion-cabecera"><h2 id="aviso-descargo-t">Descargo de responsabilidad</h2><p>Qué es y qué no es este sitio.</p></div>
+<div class="placa">
+<p class="atencion">forfit.blog, operado por JORGE ELIECER VELASCO CALVO, es un portal puramente informativo. No presta intermediación financiera, captación de dinero, asesoría de inversión personalizada ni concesión de créditos. Tampoco ofrece diagnósticos individuales, gestión de reclamos ni asesoría contable, tributaria o legal aplicada a un caso concreto.</p>
+<p>Los contenidos describen conceptos generales y usan ejemplos hipotéticos en base 100 que no representan situaciones reales ni resultados alcanzables. Antes de tomar una decisión sobre un caso propio, consulte a un contador público o a un profesional habilitado en Bolivia. El texto completo figura en el <a href="#descargo-responsabilidad">Descargo de Responsabilidad</a> de los documentos legales.</p>
+</div>
+</section>
+<section class="bloque" id="politicas" aria-labelledby="politicas-t">
+<div class="seccion-cabecera"><h2 id="politicas-t">Documentos legales</h2><p>Los cuatro documentos comparten fecha de última actualización: 24 de septiembre de 2026.</p></div>
+<div class="placa">
+<details class="legal" id="privacidad"><summary><h3>Política de Privacidad</h3></summary><div class="doc-cuerpo"><p class="fechas">Última actualización: <time datetime="2026-09-24">24 de septiembre de 2026</time></p>
+<h4>1. Marco legal aplicable</h4>
+<p>Esta política se rige por la legislación del Estado Plurinacional de Bolivia. A la fecha de su última actualización, Bolivia no cuenta con una ley general y específica de protección de datos personales; el tratamiento de datos se sujeta a la Constitución Política del Estado de 7 de febrero de 2009, que reconoce el derecho a la privacidad, intimidad, honra, honor, propia imagen y dignidad (artículo 21, numeral 2) y establece la Acción de Protección de Privacidad (artículos 130 y 131); a la Ley N.º 164, General de Telecomunicaciones, Tecnologías de Información y Comunicación, de 8 de agosto de 2011; y a su Reglamento para el Desarrollo de Tecnologías de Información y Comunicación, aprobado por Decreto Supremo N.º 1793, de 13 de noviembre de 2013. Si se promulga una ley específica de protección de datos personales, esta política se adaptará a ella.</p>
+<h4>2. Identidad y domicilio del responsable</h4>
+<p>El responsable del tratamiento es JORGE ELIECER VELASCO CALVO, titular del sitio forfit y del dominio forfit.blog, con domicilio comercial en Rumi - Rumi, Av. Final, Sucre, Bolivia, teléfono +591 68584103 y correo de contacto soporte@forfit.blog.</p>
+<h4>3. Datos que se recogen</h4>
+<p>El sitio no exige registro ni crea cuentas de usuario. Se tratan únicamente estas categorías de datos:</p>
+<ul>
+<li>Datos que usted envía voluntariamente por correo electrónico, incluido el mensaje preparado con el formulario de contacto: nombre, dirección de correo electrónico y contenido del mensaje.</li>
+<li>Datos técnicos de navegación que el servidor de alojamiento registra de forma automática: dirección IP, fecha y hora de la solicitud, página solicitada, tipo de navegador y sistema operativo.</li>
+<li>Datos asociados a cookies y tecnologías similares, en los términos de la <a href="#cookies">Política de Cookies</a>.</li>
+</ul>
+<p>El sitio no solicita datos bancarios, números de cuenta o tarjeta, claves, documentos de identidad ni datos sensibles, y le pide que no los incluya en sus mensajes.</p>
+<h4>4. Finalidad y base del tratamiento</h4>
+<ul>
+<li>Responder consultas y avisos de errores: la base es el consentimiento que usted expresa al escribir.</li>
+<li>Mantener el sitio disponible y seguro mediante los registros técnicos: la base es la necesidad técnica de prestar el servicio de información solicitado.</li>
+<li>Medir audiencia y mostrar publicidad mediante cookies no técnicas: la base es su consentimiento, otorgado en el aviso de cookies y revocable en cualquier momento.</li>
+</ul>
+<p>Los datos no se usan para finalidades distintas de las indicadas, no se venden y no se ceden a terceros con fines comerciales propios de estos.</p>
+<h4>5. Plazo de conservación</h4>
+<p>Los mensajes de correo se conservan durante doce meses desde la última comunicación sobre el asunto y luego se eliminan, salvo que deban conservarse por una obligación legal. Los registros técnicos se conservan durante un máximo de noventa días. La preferencia de cookies se guarda en su navegador hasta que usted la borre.</p>
+<h4>6. Terceros que intervienen</h4>
+<ul>
+<li>El proveedor de alojamiento web contratado por el titular, que almacena el sitio y genera los registros técnicos.</li>
+<li>El proveedor del servicio de correo electrónico de la dirección soporte@forfit.blog, que recibe y almacena los mensajes.</li>
+<li>Google LLC, que sirve las tipografías del sitio mediante Google Fonts, lo que implica que su navegador comunica su dirección IP a sus servidores, y que, si usted lo acepta, presta servicios de publicidad mediante cookies.</li>
+</ul>
+<p>Cada uno de estos terceros trata los datos conforme a sus propias políticas.</p>
+<h4>7. Transferencias fuera del país</h4>
+<p>Algunos de los terceros indicados operan servidores fuera de Bolivia, principalmente en los Estados Unidos de América y en países de la Unión Europea. Al usar el sitio, enviar un mensaje o aceptar las cookies no técnicas, sus datos pueden ser transferidos a esos países. El titular procura que dichos proveedores apliquen medidas de protección razonables y reconocidas.</p>
+<h4>8. Derechos de acceso, rectificación, cancelación y oposición</h4>
+<p>Usted puede solicitar en cualquier momento el acceso a sus datos, su rectificación, su cancelación o su oposición al tratamiento. El procedimiento es el siguiente:</p>
+<ol>
+<li>Envíe un correo a soporte@forfit.blog con el asunto «Derechos sobre datos personales», indicando el derecho que ejerce y los datos a los que se refiere.</li>
+<li>Escriba desde la misma dirección de correo con la que se comunicó con el sitio, lo que sirve para verificar su identidad. No se le pedirán documentos adicionales salvo que sea imprescindible, y nunca datos bancarios.</li>
+<li>Recibirá acuse de recibo en un plazo de tres días hábiles y una respuesta de fondo en un plazo máximo de diez días hábiles desde la recepción de la solicitud.</li>
+</ol>
+<p>Si considera que su solicitud no fue atendida, puede acudir a la vía judicial mediante la Acción de Protección de Privacidad prevista en el artículo 130 de la Constitución Política del Estado.</p>
+<h4>9. Menores de edad</h4>
+<p>El sitio no se dirige a menores de edad y no recoge conscientemente sus datos. Si el titular advierte que ha recibido datos de una persona menor de edad sin autorización de quien la represente, los eliminará.</p>
+<h4>10. Medidas de seguridad</h4>
+<p>El sitio se sirve mediante conexión cifrada. El formulario no almacena datos en ningún servidor, porque solo prepara un mensaje en el programa de correo del visitante. El acceso al buzón de correo y al panel de alojamiento está restringido al titular y protegido con contraseñas robustas y verificación en dos pasos. Ninguna medida es infalible, pero se revisan periódicamente.</p>
+<h4>11. Cambios en esta política</h4>
+<p>Cualquier cambio se publica en esta misma sección con una nueva fecha de última actualización. Si el cambio es sustancial, se indicará además con un aviso visible en la portada del sitio durante al menos treinta días.</p></div></details>
+<details class="legal" id="terminos"><summary><h3>Términos y Condiciones</h3></summary><div class="doc-cuerpo"><p class="fechas">Última actualización: <time datetime="2026-09-24">24 de septiembre de 2026</time></p>
+<h4>1. Identificación del titular</h4>
+<p>El sitio forfit, accesible en el dominio forfit.blog, es de titularidad de JORGE ELIECER VELASCO CALVO, con domicilio comercial en Rumi - Rumi, Av. Final, Sucre, Bolivia, teléfono +591 68584103 y correo soporte@forfit.blog.</p>
+<h4>2. Objeto del sitio</h4>
+<p>El sitio publica contenido educativo y general sobre cuatro áreas: presupuesto del hogar por categorías, costos de un negocio pequeño, lectura de documentos económicos y registro y orden. Su finalidad es exclusivamente informativa.</p>
+<h4>3. Gratuidad</h4>
+<p>El acceso y el uso del sitio son gratuitos y no requieren registro. El sitio no vende productos ni servicios.</p>
+<h4>4. Usos permitidos</h4>
+<p>Usted puede leer, imprimir y compartir los contenidos para uso personal o educativo sin fines de lucro, siempre que cite el nombre del sitio y enlace a la página de origen.</p>
+<h4>5. Usos prohibidos</h4>
+<ul>
+<li>Reproducir el contenido de forma total o sustancial en otros sitios o publicaciones sin autorización escrita.</li>
+<li>Presentar el contenido como propio o atribuir al sitio afirmaciones que no contiene.</li>
+<li>Usar el sitio o su nombre para solicitar datos personales, bancarios o de cualquier otro tipo a terceros.</li>
+<li>Intentar acceder sin autorización a los sistemas del sitio, sobrecargarlos o introducir código malicioso.</li>
+<li>Extraer contenidos de forma automatizada y masiva.</li>
+</ul>
+<h4>6. Propiedad intelectual</h4>
+<p>Los textos, la estructura, el diseño y las ilustraciones del sitio pertenecen a JORGE ELIECER VELASCO CALVO y están protegidos por la legislación boliviana sobre derecho de autor. Las marcas de terceros que puedan aparecer en espacios publicitarios pertenecen a sus respectivos titulares.</p>
+<h4>7. Enlaces externos</h4>
+<p>El sitio puede incluir enlaces a páginas de terceros, por ejemplo en los documentos legales. El titular no controla ni responde por el contenido, las políticas o la disponibilidad de esas páginas.</p>
+<h4>8. Publicidad</h4>
+<p>El sitio muestra publicidad de terceros en espacios separados del contenido editorial. Los anuncios son responsabilidad de sus anunciantes; su presencia no implica recomendación ni relación comercial con lo anunciado.</p>
+<h4>9. Limitación de responsabilidad</h4>
+<p>El contenido es general y puede no ajustarse a una situación particular. El titular no responde por decisiones tomadas a partir de él, ni por interrupciones del servicio, errores técnicos o daños derivados del uso de enlaces externos. Nada de lo publicado constituye asesoría profesional; para un caso concreto debe consultarse a un contador público o a un profesional habilitado en Bolivia.</p>
+<h4>10. Modificaciones</h4>
+<p>El titular puede modificar estos términos y el contenido del sitio en cualquier momento. La versión vigente es la publicada en esta sección con su fecha de última actualización.</p>
+<h4>11. Legislación aplicable</h4>
+<p>Estos términos se rigen por las leyes del Estado Plurinacional de Bolivia. Cualquier controversia se someterá a los jueces y tribunales competentes de la ciudad de Sucre, salvo que la ley disponga otro fuero.</p></div></details>
+<details class="legal" id="cookies"><summary><h3>Política de Cookies</h3></summary><div class="doc-cuerpo"><p class="fechas">Última actualización: <time datetime="2026-09-24">24 de septiembre de 2026</time></p>
+<h4>1. Qué son</h4>
+<p>Las cookies son pequeños archivos que un sitio guarda en su navegador. Tecnologías similares, como el almacenamiento local del navegador, cumplen funciones parecidas y se tratan aquí del mismo modo.</p>
+<h4>2. Cookies técnicas</h4>
+<p>Son necesarias para el funcionamiento básico. forfit usa una sola: la preferencia sobre cookies, guardada en el almacenamiento local del navegador con el nombre «forfit-consentimiento», que registra si usted aceptó o rechazó las cookies no técnicas. No requiere consentimiento y no identifica a la persona.</p>
+<h4>3. Cookies de medición</h4>
+<p>Sirven para contar visitas y conocer, de forma agregada, qué páginas se consultan. Solo se activan si usted acepta las cookies no técnicas. Los datos se usan de forma estadística y no para identificar a visitantes concretos.</p>
+<h4>4. Cookies publicitarias de terceros</h4>
+<p>El sitio se financia con publicidad servida por terceros, entre ellos Google. Los proveedores externos, incluido Google, usan cookies para mostrar anuncios basados en las visitas previas de un usuario a este sitio o a otros sitios web. Las cookies publicitarias permiten a Google y a sus socios mostrar anuncios basados en esas visitas. Solo se activan si usted acepta las cookies no técnicas; si las rechaza, pueden mostrarse anuncios no personalizados.</p>
+<p>Puede consultar cómo usa Google los datos de los sitios que utilizan sus servicios en <a href="https://policies.google.com/technologies/partner-sites" rel="noopener">https://policies.google.com/technologies/partner-sites</a> y desactivar la publicidad personalizada en <a href="https://adssettings.google.com" rel="noopener">https://adssettings.google.com</a>.</p>
+<h4>5. Cómo aceptar, rechazar o revocar el consentimiento</h4>
+<p>Al entrar por primera vez, un aviso le permite aceptar o rechazar las cookies no técnicas. Puede cambiar su decisión en cualquier momento:</p>
+<ul>
+<li>Borrando los datos del sitio desde la configuración de su navegador, normalmente en el apartado de privacidad, cookies o datos de sitios. Al volver, el aviso aparecerá de nuevo.</li>
+<li>Bloqueando las cookies de terceros o todas las cookies desde esa misma configuración.</li>
+<li>Usando el botón de gestión que aparece a continuación cuando el navegador ejecuta JavaScript.</li>
+</ul>
+<p><button class="boton boton-sec" type="button" id="cookies-gestionar" hidden>Gestionar mis preferencias de cookies</button></p>
+<h4>6. Cambios</h4>
+<p>Esta política se actualiza cuando cambian las cookies utilizadas. La fecha de última actualización figura al inicio.</p></div></details>
+<details class="legal" id="descargo-responsabilidad"><summary><h3>Descargo de Responsabilidad</h3></summary><div class="doc-cuerpo"><p class="fechas">Última actualización: <time datetime="2026-09-24">24 de septiembre de 2026</time></p>
+<h4>1. Naturaleza del sitio</h4>
+<p>forfit.blog, operado por JORGE ELIECER VELASCO CALVO, es un portal puramente informativo y educativo. No presta intermediación financiera, captación de dinero, asesoría de inversión personalizada ni concesión de créditos. Tampoco ofrece diagnósticos individuales, gestión de reclamos ni asesoría contable, tributaria o legal aplicada a un caso concreto.</p>
+<h4>2. Carácter general del contenido</h4>
+<p>Los textos describen conceptos de forma general. No consideran la situación particular de ningún lector y no deben usarse como única base para una decisión. Las decisiones sobre un caso concreto corresponden a un contador público o a un profesional habilitado en Bolivia.</p>
+<h4>3. Ejemplos numéricos</h4>
+<p>Todas las cifras de ejemplo están expresadas en base 100 o en proporciones y son hipotéticas. No reflejan datos reales, no constituyen metas ni repartos recomendados y no representan resultados alcanzables.</p>
+<h4>4. Normativa citada</h4>
+<p>Las menciones a normas son orientativas. Las normas cambian, y su vigencia y alcance para un caso deben confirmarse en fuentes oficiales o con un profesional habilitado.</p>
+<h4>5. Publicidad</h4>
+<p>Los anuncios que se muestran en el sitio son de terceros. El titular no respalda ni garantiza los productos o servicios anunciados.</p>
+<h4>6. Seguridad</h4>
+<p>El sitio nunca solicita datos bancarios, números de cuenta o tarjeta, claves ni códigos de verificación. Cualquier comunicación que lo haga en su nombre es ajena a él.</p>
+<h4>7. Exactitud y corrección</h4>
+<p>El titular procura que el contenido sea exacto y actual, pero no garantiza la ausencia de errores. Los errores detectados pueden comunicarse a soporte@forfit.blog y se corrigen según la política descrita en la sección <a href="#nosotros">Nosotros</a>.</p></div></details>
+</div>
+</section>
+</main>
+<footer class="pie" id="pie">
+<div class="pie-interior">
+<div>
+<p class="marca">forfit</p>
+<dl class="ficha" id="ficha-pie"><dt>Nombre del sitio</dt><dd>forfit</dd><dt>Titular</dt><dd>JORGE ELIECER VELASCO CALVO</dd><dt>Dominio</dt><dd>forfit.blog</dd><dt>Correo de soporte</dt><dd><a href="mailto:soporte@forfit.blog">soporte@forfit.blog</a></dd><dt>Dirección comercial</dt><dd>Rumi - Rumi, Av. Final, Sucre, Bolivia</dd><dt>Teléfono</dt><dd><a href="tel:+59168584103">+591 68584103</a></dd><dt>País y ley de datos</dt><dd>Bolivia — Constitución Política del Estado (arts. 21 y 130), Ley N.º 164 y Decreto Supremo N.º 1793</dd></dl>
+</div>
+<nav class="pie-legal" aria-label="Documentos legales">
+<ul>
+<li><a href="#privacidad">Política de Privacidad</a></li>
+<li><a href="#terminos">Términos y Condiciones</a></li>
+<li><a href="#cookies">Política de Cookies</a></li>
+<li><a href="#descargo-responsabilidad">Descargo de Responsabilidad</a></li>
+</ul>
+</nav>
+</div>
+<p class="pie-nota">Portal informativo. No presta servicios financieros ni asesoría profesional. © 2026 JORGE ELIECER VELASCO CALVO.</p>
+</footer>
+<div class="cookies oculto" id="aviso-cookies" role="region" aria-label="Aviso de cookies" hidden>
+<p>forfit usa una preferencia técnica y, solo si usted lo acepta, cookies de medición y de publicidad de terceros. Detalles en la <a href="#cookies">Política de Cookies</a>.</p>
+<div class="cookies-acciones">
+<button class="boton" type="button" id="cookies-aceptar">Aceptar</button>
+<button class="boton boton-sec" type="button" id="cookies-rechazar">Rechazar</button>
+</div>
+</div>
+<script>
+(function () {
+"use strict";
+var d = document;
+d.documentElement.classList.add("js");
+
+var boton = d.getElementById("menu-boton");
+var menu = d.getElementById("menu");
+if (boton && menu) {
+  var cerrarMenu = function () {
+    menu.classList.remove("abierto");
+    boton.setAttribute("aria-expanded", "false");
+  };
+  boton.addEventListener("click", function () {
+    var abierto = menu.classList.toggle("abierto");
+    boton.setAttribute("aria-expanded", abierto ? "true" : "false");
+  });
+  menu.addEventListener("click", function (ev) {
+    if (ev.target && ev.target.closest && ev.target.closest("a")) { cerrarMenu(); }
+  });
+  d.addEventListener("keydown", function (ev) {
+    if (ev.key === "Escape" && menu.classList.contains("abierto")) { cerrarMenu(); boton.focus(); }
+  });
+}
+
+var abrirDocumento = function (id) {
+  if (!id) { return; }
+  var destino = d.getElementById(id);
+  if (!destino) { return; }
+  var detalle = destino.tagName === "DETAILS" ? destino : destino.closest("details");
+  if (detalle && !detalle.open) { detalle.open = true; }
+};
+d.addEventListener("click", function (ev) {
+  var enlace = ev.target && ev.target.closest ? ev.target.closest('a[href^="#"]') : null;
+  if (enlace) { abrirDocumento(enlace.getAttribute("href").slice(1)); }
+});
+window.addEventListener("hashchange", function () { abrirDocumento(window.location.hash.slice(1)); });
+if (window.location.hash) {
+  abrirDocumento(window.location.hash.slice(1));
+  var inicial = d.getElementById(window.location.hash.slice(1));
+  if (inicial) { inicial.scrollIntoView(); }
+}
+
+var CLAVE = "forfit-consentimiento";
+var leer = function () {
+  try { return window.localStorage.getItem(CLAVE); } catch (err) { return null; }
+};
+var guardar = function (valor) {
+  try { window.localStorage.setItem(CLAVE, valor); return true; } catch (err) { return false; }
+};
+var aviso = d.getElementById("aviso-cookies");
+var mostrarAviso = function () {
+  if (!aviso) { return; }
+  aviso.hidden = false;
+  window.requestAnimationFrame(function () {
+    window.requestAnimationFrame(function () { aviso.classList.remove("oculto"); });
+  });
+};
+var ocultarAviso = function () {
+  if (!aviso) { return; }
+  aviso.classList.add("oculto");
+  window.setTimeout(function () { aviso.hidden = true; }, 200);
+};
+if (aviso) {
+  var aceptar = d.getElementById("cookies-aceptar");
+  var rechazar = d.getElementById("cookies-rechazar");
+  if (aceptar) { aceptar.addEventListener("click", function () { guardar("aceptadas"); ocultarAviso(); }); }
+  if (rechazar) { rechazar.addEventListener("click", function () { guardar("rechazadas"); ocultarAviso(); }); }
+  if (!leer()) { mostrarAviso(); }
+}
+var gestionar = d.getElementById("cookies-gestionar");
+if (gestionar && aviso) {
+  gestionar.hidden = false;
+  gestionar.addEventListener("click", mostrarAviso);
+}
+
+var formulario = d.getElementById("formulario");
+if (formulario) {
+  var campos = {
+    nombre: d.getElementById("f-nombre"),
+    correo: d.getElementById("f-correo"),
+    mensaje: d.getElementById("f-mensaje")
+  };
+  var estado = d.getElementById("f-estado");
+  var marcar = function (campo, texto) {
+    if (!campo) { return; }
+    var salida = d.getElementById(campo.id + "-error");
+    if (salida) { salida.textContent = texto; }
+    campo.setAttribute("aria-invalid", texto ? "true" : "false");
+  };
+  var patronCorreo = /^[^\s@]+@[^\s@]+\.[^\s@]{2,}$/;
+  formulario.addEventListener("submit", function (ev) {
+    ev.preventDefault();
+    if (!campos.nombre || !campos.correo || !campos.mensaje) { return; }
+    var nombre = campos.nombre.value.trim();
+    var correo = campos.correo.value.trim();
+    var mensaje = campos.mensaje.value.trim();
+    var primero = null;
+    marcar(campos.nombre, nombre.length < 2 ? "Error: escriba su nombre (al menos 2 caracteres)." : "");
+    if (nombre.length < 2) { primero = campos.nombre; }
+    marcar(campos.correo, patronCorreo.test(correo) ? "" : "Error: escriba una dirección de correo válida.");
+    if (!patronCorreo.test(correo) && !primero) { primero = campos.correo; }
+    marcar(campos.mensaje, mensaje.length < 10 ? "Error: el mensaje debe tener al menos 10 caracteres." : "");
+    if (mensaje.length < 10 && !primero) { primero = campos.mensaje; }
+    if (primero) {
+      if (estado) { estado.textContent = "Revise los campos marcados."; }
+      primero.focus();
+      return;
+    }
+    var destino = formulario.getAttribute("action") || "";
+    var asunto = encodeURIComponent("Consulta desde forfit: " + nombre);
+    var cuerpo = encodeURIComponent("Nombre: " + nombre + "\nCorreo: " + correo + "\n\n" + mensaje);
+    if (estado) { estado.textContent = "Se abrirá su programa de correo con el mensaje preparado."; }
+    window.location.href = destino + "?subject=" + asunto + "&body=" + cuerpo;
+  });
+}
+})();
+</script>
+</body>
+</html>
